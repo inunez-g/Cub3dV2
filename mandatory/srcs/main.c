@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inunez-g <inunez-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/26 11:08:08 by inunez-g          #+#    #+#             */
+/*   Updated: 2023/09/26 11:30:47 by inunez-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/cub3d.h"
 
 /*
@@ -17,7 +29,7 @@ void	get_map_index( t_var *vars )
 		if (!ft_isspace(vars->map[i][j]) && ft_isdigit(vars->map[i][j]))
 		{
 			vars->map_index = i;
-			break;
+			break ;
 		}
 	}
 }
@@ -49,7 +61,7 @@ void	check_textures( t_var *vars )
 		if (!ft_strcmp(vars->map[i], "\n"))
 		{
 			i++;
-			continue;
+			continue ;
 		}
 		texture = split_textures(vars->map[i], vars);
 		print_2dstr(texture);
@@ -69,34 +81,34 @@ void	texture_filled_checker(t_var *vars)
 	printf("Bien\n");
 }
 
-int check_top(t_var *vars, int j , int i)
+int check_top(t_var	*vars, int	j, int	i)
 {
-    if (!vars->map[j - 1][i] || (vars->map[j - 1][i] != '0' && vars->map[j - 1][i] != '1' && vars->map[j - 1][i] != 'N' && vars->map[j - 1][i] != 'S' && vars->map[j - 1][i] != 'E' && vars->map[j - 1][i] != 'W'))
+	if (!vars->map[j - 1][i] || (vars->map[j - 1][i] != '0' && vars->map[j - 1][i] != '1' && vars->map[j - 1][i] != 'N' && vars->map[j - 1][i] != 'S' && vars->map[j - 1][i] != 'E' && vars->map[j - 1][i] != 'W'))
 	{
 		printf("OPCION_TOP\n");
-        return (1);
+		return(1);
 	}
-    return (0);
+	return(0);
 }
 
-int check_bottom(t_var *vars, int j , int i)
+int check_bottom(t_var *vars, int	j, int	i)
 {
     if (!vars->map[j + 1][i] || (vars->map[j + 1][i] != '0' && vars->map[j + 1][i] != '1' && vars->map[j + 1][i] != 'N' && vars->map[j + 1][i] != 'S' && vars->map[j + 1][i] != 'E' && vars->map[j + 1][i] != 'W'))
 	{
 		printf("OPCION_BOT\n");
-        return (1);
+        return(1);
 	}
-    return (0);
+    return(0);
 }
 
-int check_right(t_var *vars, int j , int i)
+int check_right(t_var	*vars, int	j, int	i)
 {
     if (!vars->map[j][i + 1] || (vars->map[j][i + 1] != '0' && vars->map[j][i + 1] != '1' && vars->map[j][i + 1] != 'N' && vars->map[j][i + 1] != 'S' && vars->map[j][i + 1] != 'E' && vars->map[j][i + 1] != 'W'))
 	{
 		printf("OPCION_RIGHT\n");
         return (1);
 	}
-    return (0);
+	return(0);
 }
 
 int check_left(t_var *vars, int j , int i)
@@ -104,9 +116,9 @@ int check_left(t_var *vars, int j , int i)
     if (!vars->map[j][i - 1] || (vars->map[j][i - 1] != '0' && vars->map[j][i - 1] != '1' && vars->map[j][i - 1] != 'N' && vars->map[j][i - 1] != 'S' && vars->map[j][i - 1] != 'E' && vars->map[j][i - 1] != 'W'))
 	{
 		printf("OPCION_LEFT\n");
-        return (1);
+        return(1);
 	}
-    return (0);
+    return(0);
 }
 
 

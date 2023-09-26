@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_textures.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inunez-g <inunez-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/26 11:08:21 by inunez-g          #+#    #+#             */
+/*   Updated: 2023/09/26 11:26:39 by inunez-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/cub3d.h"
 #include <fcntl.h>
 
@@ -46,7 +58,7 @@ char	**fill_textures( char *str, char **dst )
 {
 	int	len;
 	int	i;
-	int start;
+	int	start;
 	int	j;
 
 	i = 0;
@@ -57,7 +69,7 @@ char	**fill_textures( char *str, char **dst )
 		while (ft_isspace(str[i]) && str[i])
 			i++;
 		if (!str[i])
-			break;
+			break ;
 		start = i;
 		while (!ft_isspace(str[i]) && str[i])
 			i++;
@@ -68,7 +80,7 @@ char	**fill_textures( char *str, char **dst )
 	return (dst);
 }
 
-char	**split_textures( char *str , t_var *vars)
+char	**split_textures(char	*str, t_var	*vars)
 {
 	int		len;
 	char	**dst;
@@ -82,6 +94,6 @@ char	**split_textures( char *str , t_var *vars)
 	dst = fill_textures(str, dst);
 	//print_2dstr(dst);
 	if (!ft_strstr(TEXTURES, dst[0]))
-			process_error(INVALID_TEXTURE, vars);
+		process_error(INVALID_TEXTURE, vars);
 	return (dst);
 }

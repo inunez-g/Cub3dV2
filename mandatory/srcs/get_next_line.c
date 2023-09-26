@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inunez-g <inunez-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/26 11:07:42 by inunez-g          #+#    #+#             */
+/*   Updated: 2023/09/26 11:36:46 by inunez-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/cub3d.h"
 
 static char	*ft_update_temp(char *temp)
@@ -61,7 +73,7 @@ char	*get_next_line(int fd)
 	static char	*temp;
 	char		*line;
 
-	if (fd <= -1 )
+	if (fd <= -1)
 		return (NULL);
 	while (!ft_strchr(temp, '\n'))
 	{

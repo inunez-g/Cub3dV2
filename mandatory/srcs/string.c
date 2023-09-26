@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inunez-g <inunez-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/26 11:08:27 by inunez-g          #+#    #+#             */
+/*   Updated: 2023/09/26 11:24:15 by inunez-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/cub3d.h"
 
 /*
@@ -30,7 +42,8 @@ size_t	ft_strlen( const char *str )
  *     A pointer to the last found character
  *     NULL if the character is not found
  */
-char	*ft_strrchr( const char *str , int c )
+
+char	*ft_strrchr(const char	*str, int c)
 {
 	size_t	i;
 
@@ -57,7 +70,8 @@ char	*ft_strrchr( const char *str , int c )
  *     A pointer to the last found character
  *     NULL if the character is not found
  */
-char	*ft_strchr( const char *str , int c )
+
+char	*ft_strchr(const char	*str, int c)
 {
 	size_t	i;
 
@@ -110,7 +124,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 {
 	ssize_t	i;
 	ssize_t	j;
-	
+
 	i = -1;
 	printf("hays = <%s> y need = <%s>\n", haystack, needle);
 	if (!needle || !haystack)

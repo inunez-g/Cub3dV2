@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inunez-g <inunez-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/26 11:07:45 by inunez-g          #+#    #+#             */
+/*   Updated: 2023/09/26 11:36:04 by inunez-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/cub3d.h"
 
 void	lst_to_array(t_var *vars)
@@ -31,9 +43,9 @@ static void	read_map( t_var	*vars )
 		if (line == NULL)
 			line = get_next_line(vars->fd);
 		if (!line)
-			break;
+			break ;
 		ft_lstadd_back(&vars->lst_map, ft_lstnew(ft_strdup(line)));
-		vars->lines +=1;
+		vars->lines += 1;
 		ft_free(&line);
 	}
 	lst_to_array(vars);
