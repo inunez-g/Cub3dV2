@@ -53,11 +53,11 @@ $M$O:
 $(OBJS): | $M$O
 
 $(OBJS): $M$O%.o : $M$S%.c
-	$(CC) $(CFLAGS) $(DEPURATE) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPURATE) -Imlx -c $< -o $@
 
 $(NAME): $(OBJS)
 	@echo "Compiling mandatory...."
-	$(CC) $(CFLAGS) $(DEPURATE) $^ -o $(NAME)
+	$(CC) $(CFLAGS) $(DEPURATE) -L./mlx/ -lmlx -framework OpenGL -framework AppKit $^ -o $(NAME)
 	@echo "Mandatory compiled"
 
 clean:

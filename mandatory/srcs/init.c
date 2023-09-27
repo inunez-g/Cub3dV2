@@ -23,4 +23,9 @@ void    init(t_var  *vars)
     vars->textures->filled = 0;
     vars->lst_map = NULL;
     vars->lines = 0;
+    vars->player = (t_player *)malloc(sizeof(t_player));
+    vars->player->x = 0;
+    vars->player->y = 0;
+    vars->player->dir = '\0';
+    vars->player->found = 0;
 }

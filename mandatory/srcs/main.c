@@ -83,7 +83,8 @@ void	texture_filled_checker(t_var *vars)
 
 int check_top(t_var	*vars, int	j, int	i)
 {
-	if (!vars->map[j - 1][i] || (vars->map[j - 1][i] != '0' && vars->map[j - 1][i] != '1' && vars->map[j - 1][i] != 'N' && vars->map[j - 1][i] != 'S' && vars->map[j - 1][i] != 'E' && vars->map[j - 1][i] != 'W'))
+	printf("check: %d\n", (int)ft_strlen(vars->map[j - 1]));
+	if (((int)ft_strlen(vars->map[j - 1]) <= i) || !vars->map[j - 1][i] || (vars->map[j - 1][i] != '0' && vars->map[j - 1][i] != '1' && vars->map[j - 1][i] != 'N' && vars->map[j - 1][i] != 'S' && vars->map[j - 1][i] != 'E' && vars->map[j - 1][i] != 'W'))
 	{
 		printf("OPCION_TOP\n");
 		return(1);
@@ -91,8 +92,23 @@ int check_top(t_var	*vars, int	j, int	i)
 	return(0);
 }
 
+int	ft_2dstrlen(char **str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return(len);
+}
+
 int check_bottom(t_var *vars, int	j, int	i)
 {
+	if (j == ft_2dstrlen(vars->map) - 1)
+	{
+		printf("OPCION_BOT_LASTLINE\n");
+		return(1);
+	}
     if (!vars->map[j + 1][i] || (vars->map[j + 1][i] != '0' && vars->map[j + 1][i] != '1' && vars->map[j + 1][i] != 'N' && vars->map[j + 1][i] != 'S' && vars->map[j + 1][i] != 'E' && vars->map[j + 1][i] != 'W'))
 	{
 		printf("OPCION_BOT\n");
@@ -121,34 +137,90 @@ int check_left(t_var *vars, int j , int i)
     return(0);
 }
 
+int check_top_left(t_var *vars, int j , int i)
+{
+	if (!vars->map[j - 1][i - 1] || vars->map[j - 1][i - 1] == '\n' || vars->map[j - 1][i - 1] == ' ')
+	{
+		printf("OPCION_TOP_LEFT\n");
+        return(1);
+	}
+	return(0);
+}
+
+int check_top_right(t_var *vars, int j , int i)
+{
+	if (!vars->map[j - 1][i + 1] || vars->map[j - 1][i + 1] == '\n' || vars->map[j - 1][i + 1] == ' ')
+	{
+		printf("OPCION_TOP_RIGHT\n");
+        return(1);
+	}
+	return(0);
+}
+
+int check_bottom_left(t_var *vars, int j , int i)
+{
+	if (!vars->map[j + 1][i - 1] || vars->map[j + 1][i - 1] == '\n' || vars->map[j + 1][i - 1] == ' ')
+	{
+		printf("OPCION_BOTTOM_LEFT\n");
+        return(1);
+	}
+	return(0);
+}
+
+int check_bottom_right(t_var *vars, int j , int i)
+{
+	if (!vars->map[j + 1][i + 1] || vars->map[j + 1][i + 1] == '\n' || vars->map[j + 1][i + 1] == ' ')
+	{
+		printf("OPCION_BOTTOM_RIGHT\n");
+        return(1);
+	}
+	return(0);
+}
+
+void	check_player(t_var *vars, int j, int i, char	direction)
+{
+	if (vars->player->found == 1)
+		process_error(INVALID_FILE, vars);
+	else
+	{
+		vars->player->found = 1;
+		vars->player->x = j;
+		vars->player->y = i;
+		vars->player->dir = direction;
+	}
+}
 
 void    check_borders(t_var *vars)
 {
     int i = 0;
     int j = 0;
-	while (vars->map[j][i] != '1')
-		j++;
+	
+	j = vars->map_index;
     while (vars->map[j])
     {
         i = 0;
-		if (vars->map[j][0] == '\n' || vars->map[j][0] == '\0') // ******MIRAR CASO ULTIMA LINEA VACIA******
-			process_error(INVALID_FILE, vars);
+		if (vars->map[j][0] == '\n' || vars->map[j][0] == '\0')
+			process_error(INVALID_MAP, vars);
         while (vars->map[j][i])
         {
             if (vars->map[j][i] == '0' || vars->map[j][i] == 'N' || vars->map[j][i] == 'S' || vars->map[j][i] == 'E' || vars->map[j][i] == 'W')
             {
-                if (check_top(vars, j , i) || check_bottom(vars, j , i) || check_right(vars, j , i) || check_left(vars, j , i))
-                    process_error(INVALID_FILE, vars);
+				if (vars->map[j][i] == 'N' || vars->map[j][i] == 'S' || vars->map[j][i] == 'E' || vars->map[j][i] == 'W')
+					check_player(vars, j, i, vars->map[j][i]);
+                if (check_top(vars, j , i) || check_bottom(vars, j , i) || check_right(vars, j , i) || check_left(vars, j , i) || check_top_left(vars, j , i) || check_top_right(vars, j , i) || check_bottom_left(vars, j , i) || check_bottom_right(vars, j , i))
+                    process_error(INVALID_MAP, vars);
             }
             else
             {
                 if (vars->map[j][i] != '1' && vars->map[j][i] != ' ' && vars->map[j][i] != '\n')
-                    process_error(INVALID_FILE, vars);
+                    process_error(INVALID_MAP, vars);
             }
             i++;
         }
         j++;
     }
+	if (vars->player->found == 0)
+		process_error(INVALID_MAP, vars);
 }
 
 int	main( int argc, char **argv )

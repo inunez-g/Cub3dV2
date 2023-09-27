@@ -41,6 +41,8 @@ void	process_error(int type, t_var *vars)
 		print_error("cub3d: error: invalid texture", NULL);
 	else if (type == INVALID_PARAMS)
 		print_error("cub3d: error: invalid paramaters", print_usage);
+	else if (type == INVALID_MAP)
+		print_error("cub3d: error: invalid map", NULL);
 	general_free(vars);
 	exit(1);
 }

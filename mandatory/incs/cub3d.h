@@ -6,6 +6,8 @@
 # define INVALID_FILE		2
 # define INVALID_TEXTURE	3
 # define INVALID_PARAMS		4
+# define INVALID_MAP		5
+
 
 # define TEXTURES 			"NO EA WE SO C F"
 
@@ -33,6 +35,14 @@ typedef struct	s_textures
 	int		filled;
 }	t_textures;
 
+typedef struct s_player
+{
+	int 	x;
+	int 	y;
+	char	dir;
+	int 	found;
+}	t_player;
+
 typedef struct	s_var
 {
 	int			fd;
@@ -41,6 +51,7 @@ typedef struct	s_var
 	int			map_index;
 	t_list		*lst_map;
 	t_textures	*textures;
+	t_player	*player;
 }	t_var;
 
 /* CHECK FUNCTIONS */

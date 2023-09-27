@@ -56,13 +56,11 @@ static char	*splitdup(const char *s, size_t start, size_t finish)
 
 char	**fill_textures( char *str, char **dst )
 {
-	int	len;
 	int	i;
 	int	start;
 	int	j;
 
 	i = 0;
-	len = 0;
 	j = 0;
 	while (str[i])
 	{
